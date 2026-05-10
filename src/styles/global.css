@@ -14,13 +14,13 @@
 
 @layer base {
   :root {
-    --dot-color: rgba(255, 255, 255, 0.15);
+    --dot-color: rgba(255, 255, 255, 0.04);
     --dot-gap: 20px;
   }
 
   @media (max-width: 768px) {
     :root {
-      --dot-color: rgba(255, 255, 255, 0.15);
+      --dot-color: rgba(255, 255, 255, 0.04);
       --dot-gap: 16px;
     }
   }
@@ -70,14 +70,6 @@
 }
 
 @layer components {
-  .glass-card {
-    background-color: rgba(14, 14, 14, 0.7);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-  }
-  .glass-button {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
-  }
   .section-fade {
     background: linear-gradient(180deg, transparent 0%, var(--color-background) 100%);
   }
@@ -90,6 +82,16 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+}
+
+/* Glass classes kept outside of layers to prevent Tailwind v4 purging in production */
+.glass-card {
+  background-color: rgba(14, 14, 14, 0.7);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+.glass-button {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
 }
 
 /* ===== Scroll Animation System ===== */
