@@ -14,13 +14,13 @@
 
 @layer base {
   :root {
-    --dot-color: rgba(255, 255, 255, 0.04);
+    --dot-color: rgba(255, 255, 255, 0.09);
     --dot-gap: 20px;
   }
 
   @media (max-width: 768px) {
     :root {
-      --dot-color: rgba(255, 255, 255, 0.04);
+      --dot-color: rgba(255, 255, 255, 0.09);
       --dot-gap: 16px;
     }
   }
