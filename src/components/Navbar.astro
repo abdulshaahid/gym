@@ -14,7 +14,7 @@
       <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
     </nav>
 
-    <a href="/fortura-catalogue.pdf" download class="hidden md:inline-flex bg-accent hover:bg-accent-hover text-black px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+    <a href="/Catalogue%20new.pdf" download class="hidden md:inline-flex bg-accent hover:bg-accent-hover text-black px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
       Download Catalogue
     </a>
     
@@ -33,55 +33,77 @@
     <a href="#solutions" class="mobile-link text-[15px] font-semibold text-white/90 hover:text-white bg-white/5 hover:bg-white/10 py-3.5 rounded-2xl transition-colors">Solutions</a>
     <a href="#gallery" class="mobile-link text-[15px] font-semibold text-white/90 hover:text-white bg-white/5 hover:bg-white/10 py-3.5 rounded-2xl transition-colors">Gallery</a>
     <a href="#contact" class="mobile-link text-[15px] font-semibold text-white/90 hover:text-white bg-white/5 hover:bg-white/10 py-3.5 rounded-2xl transition-colors">Contact</a>
-    <a href="/fortura-catalogue.pdf" download class="mobile-link text-[15px] font-bold text-black bg-accent hover:bg-accent-hover py-3.5 rounded-2xl transition-colors mt-1">Download Catalogue</a>
+    <a href="/Catalogue%20new.pdf" download class="mobile-link text-[15px] font-bold text-black bg-accent hover:bg-accent-hover py-3.5 rounded-2xl transition-colors mt-1">Download Catalogue</a>
   </nav>
 </div>
 
 <script>
-  const navbar = document.getElementById('navbar');
-  const logoLink = document.getElementById('logo-link');
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-  let isMenuOpen = false;
+  function initNavbar() {
+    const navbar = document.getElementById('navbar');
+    const logoLink = document.getElementById('logo-link');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    let isMenuOpen = false;
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar?.classList.add('glass-card', '!py-2', 'md:!py-3');
-      logoLink?.classList.add('!h-10', 'md:!h-12');
-      logoLink?.classList.remove('h-16', 'md:h-24');
-    } else {
-      navbar?.classList.remove('glass-card', '!py-2', 'md:!py-3');
-      logoLink?.classList.remove('!h-10', 'md:!h-12');
-      logoLink?.classList.add('h-16', 'md:h-24');
+    function handleScroll() {
+      if (window.scrollY > 50) {
+        navbar?.classList.add('glass-card', '!py-2', 'md:!py-3');
+        logoLink?.classList.add('!h-10', 'md:!h-12');
+        logoLink?.classList.remove('h-16', 'md:h-24');
+      } else {
+        navbar?.classList.remove('glass-card', '!py-2', 'md:!py-3');
+        logoLink?.classList.remove('!h-10', 'md:!h-12');
+        logoLink?.classList.add('h-16', 'md:h-24');
+      }
     }
-  });
 
-  mobileMenuBtn?.addEventListener('click', () => {
-    isMenuOpen = !isMenuOpen;
-    if (isMenuOpen) {
-      mobileMenu?.classList.remove('hidden');
-      setTimeout(() => {
-        mobileMenu?.classList.remove('opacity-0', 'translate-y-[-20px]');
-        mobileMenu?.classList.add('translate-y-0');
-      }, 10);
-      mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
-    } else {
-      closeMenu();
+    // Apply immediate state
+    handleScroll();
+
+    // Clean up old listener if it exists to avoid memory leaks or double firing
+    if (window._navScrollHandler) {
+      window.removeEventListener('scroll', window._navScrollHandler);
     }
-  });
+    
+    // Set new handler and add to window
+    window._navScrollHandler = handleScroll;
+    window.addEventListener('scroll', window._navScrollHandler);
 
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if(isMenuOpen) closeMenu();
+    function closeMenu() {
+      isMenuOpen = false;
+      mobileMenu?.classList.add('opacity-0', 'translate-y-[-20px]');
+      mobileMenu?.classList.remove('translate-y-0');
+      setTimeout(() => mobileMenu?.classList.add('hidden'), 300);
+      if (mobileMenuBtn) {
+        mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>';
+      }
+    }
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      if (isMenuOpen) {
+        mobileMenu?.classList.remove('hidden');
+        setTimeout(() => {
+          mobileMenu?.classList.remove('opacity-0', 'translate-y-[-20px]');
+          mobileMenu?.classList.add('translate-y-0');
+        }, 10);
+        mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+      } else {
+        closeMenu();
+      }
     });
-  });
 
-  function closeMenu() {
-    isMenuOpen = false;
-    mobileMenu?.classList.add('opacity-0', 'translate-y-[-20px]');
-    mobileMenu?.classList.remove('translate-y-0');
-    setTimeout(() => mobileMenu?.classList.add('hidden'), 300);
-    mobileMenuBtn!.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>';
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if(isMenuOpen) closeMenu();
+      });
+    });
   }
+
+  // Initialize on first load
+  initNavbar();
+
+  // Re-initialize completely on view transitions (soft navigation)
+  document.addEventListener('astro:page-load', initNavbar);
 </script>
