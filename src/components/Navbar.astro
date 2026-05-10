@@ -1,0 +1,87 @@
+---
+---
+<header id="navbar" class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 w-[92%] md:w-[95%] max-w-[1400px] z-50 transition-all duration-500 rounded-full py-3 md:py-4 px-5 md:px-8">
+  <div class="flex items-center justify-between">
+    <a href="#" id="logo-link" class="h-16 md:h-24 flex items-center transition-all duration-500">
+      <img src="/fortura.jpeg" alt="Fortura Global Exim Logo" class="h-full w-auto object-contain rounded-lg" />
+    </a>
+    
+    <nav class="hidden lg:flex items-center gap-10 text-[13px] font-semibold tracking-wide text-text-muted uppercase">
+      <a href="#about" class="hover:text-white transition-colors duration-300">About</a>
+      <a href="#importing" class="hover:text-white transition-colors duration-300">Importing</a>
+      <a href="#solutions" class="hover:text-white transition-colors duration-300">Solutions</a>
+      <a href="#gallery" class="hover:text-white transition-colors duration-300">Gallery</a>
+      <a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a>
+    </nav>
+
+    <a href="/fortura-catalogue.pdf" download class="hidden md:inline-flex bg-accent hover:bg-accent-hover text-black px-6 py-2.5 rounded-full text-sm font-bold tracking-wide transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.3)]">
+      Download Catalogue
+    </a>
+    
+    <!-- Mobile Menu Button -->
+    <button id="mobile-menu-btn" class="lg:hidden text-white p-2" aria-label="Menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu Dropdown -->
+<div id="mobile-menu" class="fixed top-[90px] md:top-[100px] left-1/2 -translate-x-1/2 w-[92%] md:w-[95%] max-w-[400px] z-40 hidden flex-col glass-card border border-white/10 rounded-[2rem] p-3 shadow-2xl opacity-0 translate-y-[-20px] transition-all duration-300">
+  <nav class="flex flex-col gap-2 text-center">
+    <a href="#about" class="mobile-link text-[15px] font-semibold text-white/90 hover:text-white bg-white/5 hover:bg-white/10 py-3.5 rounded-2xl transition-colors">About</a>
+    <a href="#importing" class="mobile-link text-[15px] font-semibold text-white/90 hover:text-white bg-white/5 hover:bg-white/10 py-3.5 rounded-2xl transition-colors">Importing</a>
+    <a href="#solutions" class="mobile-link text-[15px] font-semibold text-white/90 hover:text-white bg-white/5 hover:bg-white/10 py-3.5 rounded-2xl transition-colors">Solutions</a>
+    <a href="#gallery" class="mobile-link text-[15px] font-semibold text-white/90 hover:text-white bg-white/5 hover:bg-white/10 py-3.5 rounded-2xl transition-colors">Gallery</a>
+    <a href="#contact" class="mobile-link text-[15px] font-semibold text-white/90 hover:text-white bg-white/5 hover:bg-white/10 py-3.5 rounded-2xl transition-colors">Contact</a>
+    <a href="/fortura-catalogue.pdf" download class="mobile-link text-[15px] font-bold text-black bg-accent hover:bg-accent-hover py-3.5 rounded-2xl transition-colors mt-1">Download Catalogue</a>
+  </nav>
+</div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const logoLink = document.getElementById('logo-link');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+  let isMenuOpen = false;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('glass-card', '!py-2', 'md:!py-3');
+      logoLink?.classList.add('!h-10', 'md:!h-12');
+      logoLink?.classList.remove('h-16', 'md:h-24');
+    } else {
+      navbar?.classList.remove('glass-card', '!py-2', 'md:!py-3');
+      logoLink?.classList.remove('!h-10', 'md:!h-12');
+      logoLink?.classList.add('h-16', 'md:h-24');
+    }
+  });
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu?.classList.remove('hidden');
+      setTimeout(() => {
+        mobileMenu?.classList.remove('opacity-0', 'translate-y-[-20px]');
+        mobileMenu?.classList.add('translate-y-0');
+      }, 10);
+      mobileMenuBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+    } else {
+      closeMenu();
+    }
+  });
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if(isMenuOpen) closeMenu();
+    });
+  });
+
+  function closeMenu() {
+    isMenuOpen = false;
+    mobileMenu?.classList.add('opacity-0', 'translate-y-[-20px]');
+    mobileMenu?.classList.remove('translate-y-0');
+    setTimeout(() => mobileMenu?.classList.add('hidden'), 300);
+    mobileMenuBtn!.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>';
+  }
+</script>

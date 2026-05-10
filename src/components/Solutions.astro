@@ -1,0 +1,70 @@
+---
+const solutions = [
+  {
+    title: "Commercial Gym Setup",
+    desc: "End-to-end imported equipment for large-scale fitness centers and chains.",
+    image: "/images/gym-image-11.webp",
+    colSpan: "lg:col-span-8",
+  },
+  {
+    title: "Hotel & Resort Fitness",
+    desc: "Luxury-grade imported machines for hospitality environments.",
+    image: "/images/gym-image-14.webp",
+    colSpan: "lg:col-span-4",
+  },
+  {
+    title: "Premium Home Gyms",
+    desc: "Commercial-grade imported equipment for private residences.",
+    image: "/images/gym-image-13.webp",
+    colSpan: "lg:col-span-4",
+  },
+  {
+    title: "Corporate Wellness",
+    desc: "Complete fitness solutions for offices and campuses.",
+    image: "/images/gym-image-12.webp",
+    colSpan: "lg:col-span-4",
+  },
+  {
+    title: "Franchise & Multi-Location",
+    desc: "Bulk import solutions for gym chains scaling across India.",
+    image: "/images/gym-image-1.webp",
+    colSpan: "lg:col-span-4",
+  }
+];
+---
+<section id="solutions" class="py-16 md:py-24 lg:py-28 px-5 md:px-12 bg-surface rounded-[2rem] md:rounded-[4rem] mx-2 md:mx-6">
+  <div class="max-w-[1400px] mx-auto">
+    
+    <div class="mb-12 md:mb-20 flex flex-col md:flex-row gap-6 md:gap-8 justify-between items-start md:items-end">
+      <div>
+        <div data-animate="fade-up" class="text-accent text-xs md:text-sm font-bold tracking-[0.2em] uppercase mb-3 md:mb-4">What We Equip</div>
+        <h2 data-animate="fade-up" style="--stagger:1" class="text-4xl md:text-[5rem] font-bold tracking-[-0.03em] leading-[1.1] md:leading-none text-white">Facility<br/>Solutions.</h2>
+      </div>
+      <p data-animate="fade-up" style="--stagger:2" class="text-text-muted max-w-sm text-base md:text-lg leading-relaxed font-medium">
+        From boutique studios to national franchise rollouts — we import, deliver, and install equipment tailored to every scale.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-5">
+      {solutions.map((item) => (
+        <div data-animate="scale-in" class={`group relative rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden h-[280px] md:h-[350px] lg:h-[450px] ${item.colSpan}`}>
+          <img 
+            src={item.image} 
+            alt={item.title} 
+            loading="lazy"
+            class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-105 transition-all duration-[2s] ease-out" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 flex items-end justify-between gap-4">
+            <div>
+              <h3 class="text-white text-xl md:text-3xl font-bold tracking-tight">{item.title}</h3>
+              <p class="text-white/50 text-sm md:text-base font-medium mt-1 hidden sm:block">{item.desc}</p>
+            </div>
+           
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
