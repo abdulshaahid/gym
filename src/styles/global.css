@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Neue Regrade';
+  src: url('/fonts/NeueRegrade-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
+
 @theme {
   --color-background: #050505;
   --color-surface: #0e0e0e;
@@ -10,6 +19,7 @@
   --color-text-main: #F5F5F5;
   --color-text-muted: #7A7A7A;
   --color-text-subtle: #4A4A4A;
+  --font-sans: "Neue Regrade", system-ui, -apple-system, sans-serif;
 }
 
 @layer base {
@@ -33,7 +43,7 @@
     background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
     background-size: var(--dot-gap) var(--dot-gap);
     color: var(--color-text-main);
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Neue Regrade', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -77,10 +87,24 @@
     box-shadow: 0 0 80px rgba(212, 175, 55, 0.08), 0 0 160px rgba(212, 175, 55, 0.04);
   }
   .text-gradient-gold {
-    background: linear-gradient(135deg, #D4AF37 0%, #F5E6A3 50%, #D4AF37 100%);
+    background: linear-gradient(
+      135deg, 
+      #D4AF37 0%, 
+      #FFE473 25%, 
+      #B8962E 50%, 
+      #FFE473 75%, 
+      #D4AF37 100%
+    );
+    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    animation: flowGold 2s linear infinite;
+  }
+
+  @keyframes flowGold {
+    0% { background-position: 0% center; }
+    100% { background-position: -200% center; }
   }
 }
 
