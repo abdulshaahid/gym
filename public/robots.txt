@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://forturaglobal.com/sitemap-index.xml
+Sitemap: https://forturaglobal.com/sitemap.xml
